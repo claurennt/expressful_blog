@@ -1,0 +1,166 @@
+
+.App {
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+
+.App-header {
+  background-color: #F9F871;
+position:relative;
+  color: #6B76FF;
+}
+
+.titleWrapper{
+  padding-top:3vw;
+  padding-left: 3%;
+  
+}
+
+.blogTitle{
+  position:relative;
+  font-size:4vw;
+ 
+}
+.wordTitle{
+  position: relative;
+  left: 0;
+  margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.wordImageWrapper{
+  position:relative;
+  left:-10px;
+}
+
+.subtitle{
+  position:relative;
+ left: 2vw;
+  color: #A5AEFF;
+  font-size: 1.8vw;
+  bottom:3.5vw;
+}
+
+.separatedText{
+  padding-left: 40px;
+  margin-left: 45px;
+}
+
+.headless-logo{
+  width:3vw;
+  position:relative;
+  top: -8px;
+}
+
+.headerForm{
+  position:relative;
+padding-top: 3vw;
+}
+
+
+button.btn{
+  color: #6B76FF;
+  border-color: #6B76FF;
+}
+
+button.btn:hover, button.btn:focus{
+  background-color: #6B76FF;
+}
+
+.navbarContainer{
+  background-color:#484848;
+  margin: 0;
+  padding: 0;
+ height:fit-content
+}
+
+
+.navbarLink{
+  color:white;
+  text-decoration: none;
+  margin: 2%;
+  font-size: 12px;
+}
+
+
+.blogpost-wrapper {
+  width: 66%;
+  margin: 10px 16.666%;
+}
+
+.custom-border {
+border: 1px solid #6B76FF;
+}
+.author-profile-pic {
+  margin: 0 auto;
+}
+
+.App-footer {
+  background-color: #6B76FF;
+  color: #F9F871;
+  
+}
+
+.w-50 {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1600px) {
+  .separatedText{
+    padding-left: 40px;
+    margin-left: 35px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+
+  .headerForm {
+    position:relative;
+    padding-right: 4vw;
+   
+  }
+  input.form-control{
+font-size: 2vw;
+width: 20vw;
+  }
+  button.btn {
+    font-size: 2vw;
+    padding:0.8vw
+  }
+
+
+  .separatedText{
+    padding-left: 40px;
+    margin-left: 20px;
+  }
+ 
+}
+
+
+
+@media screen and (max-width: 700px) {
+
+  .headerForm {
+    position:relative;
+    padding-right: 4vw;
+   
+  }
+  input.form-control{
+font-size: 2vw;
+width: 20vw;
+  }
+  button.btn {
+    font-size: 2vw;
+    padding:0.8vw
+  }
+
+
+  .separatedText{
+    padding-left: 40px;
+    margin-left: 15px;
+  }
+ 
+}
