@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function NewBlogPostForms() {
   const [newPost, setNewPost] = useState();
-  const [token /*setToken*/] = useState();
+  const [token, setToken] = useState();
 
   const handleChange = (e) => {
     console.log(
@@ -12,7 +12,10 @@ export default function NewBlogPostForms() {
     );
     setNewPost({ ...newPost, [e.target.name]: e.target.value });
   };
-
+  const handleToken = (e) => {
+    setToken(e.target.value);
+    console.log(e.target.value);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(
@@ -23,7 +26,7 @@ export default function NewBlogPostForms() {
 
     axios
       .post(
-        "http://localhost:3001/blogPosts/create",
+        "https://expressful-blog-backend.herokuapp.com/blogPosts/create",
         { newPost },
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -49,11 +52,12 @@ export default function NewBlogPostForms() {
     <div className=" d-flex flex-row justify-content-center mt-5 ">
       <form onSubmit={handleSubmit} className="d-flex flex-column  w-50">
         <div className="input-group justify-content-center mb-3 w-50">
-          <label className="input-group-text " id="basic-addon1" for="title">
+          <label className="input-group-text " id="basic-addon1" for="tken">
             Optimist Token
           </label>
           <input
-            type="password"
+            onChange={handleToken}
+            type="text"
             name="token"
             class="form-control"
             placeholder="Are you an optimist?"

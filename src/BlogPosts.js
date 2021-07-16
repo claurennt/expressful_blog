@@ -4,6 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import IndividualPost from "./IndividualPost";
 import qs from "querystringify";
 import Card from "react-bootstrap/Card";
+import { Row, Container, Col } from "react-bootstrap";
 
 export default function BlogPosts({ blogPosts }) {
   const { entry_id } = useParams();
@@ -64,44 +65,48 @@ export default function BlogPosts({ blogPosts }) {
   //.sort((a,b) => (a.fields.publishingDate > b.fields.publishingDate) ? 1 : ((b.fields.publishingDate > a.fields.publishingDate) ? -1 : 0))
 
   if (filteredBlogPosts) {
-    if (filteredBlogPosts.length >= 1) {
-      return filteredBlogPosts;
-    } else {
-      //no results found, give feedback
-      if (query) {
-        //query search wanted but no results found
-        return (
-          <div className="query-noresults-feedback h-100">
-            <Card bg="warning">
-              <Card.Header>
-                Oops! Couldn't find any blog articles for your search query.
-              </Card.Header>
-            </Card>
-          </div>
-        );
-      } else {
-        return (
-          <div className="generic-noresults-feedback h-100">
-            <Card bg="danger">
-              <Card.Header>
-                Oops! Couldn't find any blog articles. Our codemonkeys are hard
-                at work fixing this issue!
-              </Card.Header>
-            </Card>
-          </div>
-        );
-      }
-    }
+  }
+  if (filteredBlogPosts.length >= 1) {
+    return filteredBlogPosts;
   } else {
-    return (
-      <div className="generic-noresults-feedback h-100">
-        <Card bg="danger">
-          <Card.Header>
-            Oops! Couldn't find any blog articles. Our codemonkeys are hard at
-            work fixing this issue!
-          </Card.Header>
-        </Card>
-      </div>
-    );
+    //no results found, give feedback
+    if (query) {
+      //query search wanted but no results found
+      return (
+        <>
+          <Container justify="center">
+            <Row className="justify-content-md-center row">
+              <Col className="col" screen_size={6}>
+                <div className="query-noresults-feedback h-100">
+                  <Card bg="warning">
+                    <Card.Body>
+                      Oops! Couldn't find any blog articles for your search
+                      query. No matches for <strong>{query}</strong>.
+                    </Card.Body>
+                    <img
+                      alt="matches"
+                      className="mx-auto p-5"
+                      style={{ width: "30%" }}
+                      src="https://media3.giphy.com/media/R56rTrN5wjyNi/giphy.gif?cid=790b7611baeb9d3059c0e246ed668878fd80b824f329a6ab&rid=giphy.gif&ct=g"
+                    />
+                  </Card>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </>
+      );
+    } else {
+      return (
+        <div className="generic-noresults-feedback h-100">
+          <Card bg="danger">
+            <Card.Header>
+              Oops! Couldn't find any blog articles. Our codemonkeys are hard at
+              work fixing this issue!
+            </Card.Header>
+          </Card>
+        </div>
+      );
+    }
   }
 }

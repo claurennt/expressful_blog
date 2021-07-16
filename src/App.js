@@ -7,28 +7,36 @@ import Footer from "./Footer";
 import Authors from "./Authors";
 import axios from "axios";
 import NewBlogPostForm from "./NewBlogPostForm";
+import { css } from "@emotion/react";
+import ClipLoader from "react-spinners/ClipLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: #6b76ff;
+`;
 
 function App() {
   const [blogPosts, setBlogPosts] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // async function getEntriesAsync() {
-    //   const response = await client.getEntries();
-    //   setBlogPosts(response.items);
-    // }
-
-    // getEntriesAsync();
     axios
       .get("https://expressful-blog-backend.herokuapp.com/blogposts")
       .then((res) => {
         console.log({ frontendreslog: res.data });
         setBlogPosts(res.data);
+        setIsLoading(false);
       })
       .catch((e) => {
+        setIsLoading(false);
         console.log(e.message);
       });
   }, []);
 
+  if (isLoading) {
+    return <ClipLoader loading={isLoading} css={override} size={150} />;
+  }
   if (blogPosts) {
     return (
       <>
