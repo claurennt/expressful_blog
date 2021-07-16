@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 export default function IndividualPost({ post, detailed }) {
-  console.log(post)
+  console.log(post);
   const trimmedBlogPostBody = post.body.slice(0, 300) + `...`;
 
   return (
@@ -20,7 +20,7 @@ export default function IndividualPost({ post, detailed }) {
             <img
               src={post.media_url}
               alt="Article cover "
-              className="w-50"
+              className="w-75 mx-auto d-block"
             />
           )}
           <Markdown className="blogpost-body">
@@ -40,14 +40,10 @@ export default function IndividualPost({ post, detailed }) {
               </a>
               {"­ | ­"}
               {"published on "}
-              <span>
-                {moment(post.post_date).format("MMM Do YYYY")}
-              </span>
+              <span>{moment(post.post_date).format("MMM Do YYYY")}</span>
               {" by "}
-              <Link to={`/author/${post.author}`}>
-                {post.author}
-              </Link>{" "}
-              {" in "} <span className="blogpost-location">{"Neverland"}</span>
+              <Link to={`/author/${post.author}`}>{post.author}</Link> {" in "}{" "}
+              <span className="blogpost-location">{"Neverland"}</span>
             </p>{" "}
           </footer>
         </Card.Body>

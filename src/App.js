@@ -17,19 +17,17 @@ function App() {
     //   setBlogPosts(response.items);
     // }
 
-
     // getEntriesAsync();
     axios
-      .get("http://localhost:3001/blogPosts")
+      .get("https://expressful-blog-backend.herokuapp.com/blogposts")
       .then((res) => {
-        console.log({frontendreslog: res.data});
+        console.log({ frontendreslog: res.data });
         setBlogPosts(res.data);
-      
       })
       .catch((e) => {
         console.log(e.message);
-      })
-  },[]);
+      });
+  }, []);
 
   if (blogPosts) {
     return (

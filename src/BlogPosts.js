@@ -14,15 +14,9 @@ export default function BlogPosts({ blogPosts }) {
   let query = qs.parse(search).searchField;
 
   function dateCompare(a, b) {
-    return a.post_date < b.post_date
-      ? 1
-      : b.post_date < a.post_date
-      ? -1
-      : 0;
+    return a.post_date < b.post_date ? 1 : b.post_date < a.post_date ? -1 : 0;
   }
-  
 
-  
   const filteredBlogPosts = blogPosts
     .filter((post) => {
       if (query) {
@@ -33,21 +27,22 @@ export default function BlogPosts({ blogPosts }) {
       } else if (entry_id) {
         return entry_id === post.content_id;
       } else if (tag) {
-        if (post.tags.includes(",")){ //tags contains comma => multiple tags => make an array out of them
-            const tagsArray = post.tags.split(",");
-            if(tagsArray.includes(tag)){
-              console.log(`Found the tag: ${tag} in list of tags: ${tagsArray}`);
-              return true;
-            } else {
-              return false;
-            }
-        } else{
-        try {
-          return tag === post.tags;
-        } catch (ex) {
-          return false;
+        if (post.tags && post.tags.includes(",")) {
+          //tags contains comma => multiple tags => make an array out of them
+          const tagsArray = post.tags.split(",");
+          if (tagsArray.includes(tag)) {
+            console.log(`Found the tag: ${tag} in list of tags: ${tagsArray}`);
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          try {
+            return tag === post.tags;
+          } catch (ex) {
+            return false;
+          }
         }
-      }
       } else if (author) {
         return author === post.author;
       } else {

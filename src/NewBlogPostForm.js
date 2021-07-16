@@ -4,18 +4,13 @@ import { useState } from "react";
 
 export default function NewBlogPostForms() {
   const [newPost, setNewPost] = useState();
-  const [token, setToken] = useState();
+  const [token /*setToken*/] = useState();
 
   const handleChange = (e) => {
     console.log(
       `Changing newPost.${e.target.name} value to: ${e.target.value}`
     );
     setNewPost({ ...newPost, [e.target.name]: e.target.value });
-  };
-
-  const handleToken = (e) => {
-    setToken(e.target.value);
-    console.log(`Changing token value to: ${e.target.value}`);
   };
 
   const handleSubmit = (event) => {
@@ -58,7 +53,6 @@ export default function NewBlogPostForms() {
             Optimist Token
           </label>
           <input
-            onChange={handleToken}
             type="password"
             name="token"
             class="form-control"
