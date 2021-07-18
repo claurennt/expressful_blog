@@ -19,6 +19,7 @@ const override = css`
 function App() {
   const [blogPosts, setBlogPosts] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     axios
@@ -30,25 +31,36 @@ function App() {
       })
       .catch((e) => {
         setIsLoading(false);
+        setIsError(true);
         console.log(e.message);
       });
   }, []);
 
-  if (isLoading) {
-    return <ClipLoader loading={isLoading} css={override} size={150} />;
-  }
-  if (blogPosts) {
-    return (
-      <>
-        <div className="App">
-          <Header blogPosts={blogPosts} />
-
-          <div className="blogposts-container">
-            <>
+  return (
+    <>
+      <div className="App">
+        <Header />
+        {isLoading && (
+          <ClipLoader loading={isLoading} css={override} size={150} />
+        )}
+        {isError && (
+          <>
+            <div className="blogposts-container">
+              <p>Oops! Couldn't receive blogpost data.</p>
+            </div>
+          </>
+        )}
+        {!isLoading && blogPosts && (
+          <>
+            <div className="blogposts-container">
+              {/* <BlogPosts /> */}
               <Route exact path="/">
                 {<Redirect to="/home" />}
               </Route>
               <Switch>
+                <Route path="/home">
+                  <BlogPosts blogPosts={blogPosts} />
+                </Route>
                 <Route path="/article/:entry_id">
                   <BlogPosts blogPosts={blogPosts} />
                 </Route>
@@ -62,33 +74,16 @@ function App() {
                   <Authors />
                 </Route>
               </Switch>
-              <Route path="/home">
-                <BlogPosts blogPosts={blogPosts} />
-              </Route>
+
               <Route path="/blogPosts/create">
                 <NewBlogPostForm />
               </Route>
-            </>
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
-  }
-
-  return (
-    <>
-      <div className="App">
-        <Header />
-
-        <div className="blogposts-container">
-          <p>Oops! Couldn't receive blogpost data.</p>
-        </div>
-
-        <Footer />
+            </div>
+          </>
+        )}
       </div>
+      <Footer />
     </>
   );
 }
-
 export default App;

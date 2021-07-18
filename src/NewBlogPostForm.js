@@ -2,6 +2,10 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 
+axios.defaults.headers.common = {
+  "Content-Type": "application/json",
+};
+
 export default function NewBlogPostForms() {
   const [newPost, setNewPost] = useState();
   const [token, setToken] = useState();
@@ -23,7 +27,6 @@ export default function NewBlogPostForms() {
         newPost
       )}, ${JSON.stringify(token)}`
     );
-
     axios
       .post(
         "https://expressful-blog-backend.herokuapp.com/blogPosts/create",
