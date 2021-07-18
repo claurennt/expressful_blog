@@ -1,1 +1,3 @@
 /api/* https://expressful-blog-backend.herokuapp.com/:splat 200
+
+/*    /index.html   200
